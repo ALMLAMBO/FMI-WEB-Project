@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XML2Emmet - Web Technology Final Project</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <header>
+            <h1>Welcome to XML2Emmet!</h1>
+            <nav>
+                <a class="nav_button">.../История</a>
+                <a class="nav_button">Вход/Изход</a>
+            </nav>
+        </header>
+        <div class="container">
+            <form action="xml2emmet.php" method="POST" id="xml_input">
+                <textarea class="input_box" placeholder="Enter XML"></textarea>
+            </form>
+            <button onclick="location.href='./index.html'" type="button" class="change_button">⇌</button> 
+            <p id="emmet_output" class="output_box">Emmet output</p>
+        </div>
+        <input form="xml_input" class="sub_button" type="submit" value="Convert" /> 
+    </body>
+</html>

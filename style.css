@@ -1,0 +1,90 @@
+body{
+    background-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-start;
+}
+header{
+    height: 20vh;
+    width: 100%;
+    margin: 0%;
+    background-color: darkslategrey;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+h1{
+    color: azure;
+    align-self: center;
+}
+
+nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-self: center;
+}
+
+a{
+    padding: 5vh;
+    font-size: larger;
+}
+
+.input_box, .output_box{
+    width: 80vh;
+    height: 70vh;
+    border: 2px solid darkcyan;
+    border-radius: 1vh;
+    padding: 2vh;
+}
+
+.input_box{
+    background-color: black;
+    color: lightslategray;
+}
+.output_box{
+    background-color: lightslategray;
+    color: black;
+}
+
+.sub_button{
+    width: 30vh;
+    font-size: larger;
+    margin-bottom: 5vh;
+    align-self: center;
+    background-color: slategrey;
+    color: black;
+}
+.change_button{
+    font-size: xx-large;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    border: 2px solid darkslategrey;
+    background-color: darkslategrey;
+    color: azure;
+    border-radius: 50%;
+}
+.sub_button:hover{
+    background-color: darkslategrey;
+    color: azure;
+}
+
+.change_button:hover{
+    background-color: slategray;
+    color: black;
+    border: 2px solid slategray;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
