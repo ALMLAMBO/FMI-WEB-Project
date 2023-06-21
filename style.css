@@ -4,6 +4,7 @@ body{
     flex-wrap: wrap;
     flex-direction: column;
     align-content: flex-start;
+    gap:10vh;
 }
 header{
     height: 20vh;
@@ -58,6 +59,7 @@ a{
     background-color: slategrey;
     color: black;
 }
+
 .change_button{
     font-size: xx-large;
     text-align: center;
@@ -68,6 +70,7 @@ a{
     color: azure;
     border-radius: 50%;
 }
+
 .sub_button:hover{
     background-color: darkslategrey;
     color: azure;
