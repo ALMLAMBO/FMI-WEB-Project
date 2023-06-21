@@ -12,11 +12,19 @@ $res = mysqli_query($conn,$query);
 $numRows = mysqli_num_rows($res);
 if($numRows  == 1){
 //echo "<h1> You are login Successfully </h1>";
-header("location:../index.html");
+$row = mysqli_fetch_assoc($res);
+
+if ($row['username'] === $username && $row['password'] === $password) {
+	$_SESSION['username'] = $row['username'];
+	$_SESSION['id'] = $row['id'];
+	$_SESSION['loggedIn'] = true;
+	$loggedIn = true;
+	header("location:../index.php");
+}
 }
 else
 {
-	header("location:../login.html");
+	header("location:../login.php?error=Incorect Username or password");
 	//echo "<h1> failed </h1>";
 }
 

@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+    $loggedIn = true;
+} else {
+    $loggedIn = false;
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,14 +16,23 @@
     </head>
     <body>
         <header>
-            <h1>Welcome to XML2Emmet!</h1>
+            <h1><a href="index.php">Welcome to XML2Emmet!</a></h1>
             <nav>
-                <a class="nav_button">.../История</a>
-                <a class="nav_button">Вход/Изход</a>
+            <?php if ($loggedIn==true) { ?>
+                <button onclick="location.href='./history.php'" type="button" class="nav_button">История</button>
+                <button onclick="location.href='./src/logout.php'" type="button" class="nav_button">Изход</button>
+            <?php } else { ?>
+                <button onclick="location.href='./login.php'" type="button"  class="nav_button">Вход</button>
+            <?php } ?>
             </nav>
         </header>
         <div class="user-data">
             <form action="http://localhost/FMI-WEB-Project/src/login.php" onsubmit = "return validation()" method="POST" name="login">
+                <?php if (isset($_GET['error'])) { ?>
+
+                    <p class="error"><?php echo $_GET['error']; ?></p>
+        
+                <?php } ?>
                 <input class="user-data-field" id="username" name="username" type="text" placeholder="Username"/>
                 <input class="user-data-field" id="password" name="password" type="password" placeholder="Password"/>
                 <input class="sub_button" name="sub" type="submit" value="Log in"/>

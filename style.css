@@ -17,8 +17,12 @@ header{
 }
 
 h1{
+    text-align: center;
+}
+h1>a{
     color: azure;
-    align-self: center;
+    text-decoration: none;
+    padding: 3vh;
 }
 
 nav{
@@ -27,11 +31,6 @@ nav{
     flex-direction: row;
     justify-content: flex-end;
     align-self: center;
-}
-
-a{
-    padding: 5vh;
-    font-size: larger;
 }
 
 .input_box, .output_box{
@@ -71,12 +70,22 @@ a{
     border-radius: 50%;
 }
 
+.nav_button{
+    padding: 2vh;
+    font-size: larger;
+    text-align: center;
+    border: 2px solid darkslategrey;
+    background-color: darkslategrey;
+    color: azure;
+    border-radius: 2vh;
+}
+
 .sub_button:hover{
     background-color: darkslategrey;
     color: azure;
 }
 
-.change_button:hover{
+.change_button:hover, .nav_button:hover{
     background-color: slategray;
     color: black;
     border: 2px solid slategray;
