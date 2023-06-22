@@ -37,7 +37,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                 <input class="user-data-field" id="password" name="password" type="password" placeholder="Password"/>
                 <input class="sub_button" name="sub" type="submit" value="Log in"/>
             </form>
-            <p>Ако нямате профил може да се <a href="">Регистрирате</a></p>
+            <p>Ако нямате профил може да се <a href="http://localhost/FMI-WEB-Project/register.php">Регистрирате</a></p>
         </div>
     </body>
     <script>  

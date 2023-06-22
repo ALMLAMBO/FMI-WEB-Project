@@ -132,3 +132,10 @@ nav{
     border-radius: 1vh;
     margin: 3vh auto;
  }
+
+h3.message{
+    font-size: larger;
+    color: azure;
+    padding: 2vh;
+    width: 95%;
+}

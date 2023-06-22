@@ -25,6 +25,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
             <?php } ?>
             </nav>
         </header>
+        <?php if (isset($_GET['message'])) { ?>
+
+<h3 class="message"><?php echo $_GET['message']; ?></h3>
+
+<?php } ?>
         <div class="container">
             <form action="emmet2xml.php" method="POST" id="emmet_input">
                 <textarea class="input_box" placeholder="Enter Emmet"></textarea>

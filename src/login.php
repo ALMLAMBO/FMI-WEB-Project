@@ -19,7 +19,7 @@ if ($row['username'] === $username && $row['password'] === $password) {
 	$_SESSION['id'] = $row['id'];
 	$_SESSION['loggedIn'] = true;
 	$loggedIn = true;
-	header("location:../index.php");
+	header("location:../index.php?message=Welcome back, ".$username."!");
 }
 }
 else
