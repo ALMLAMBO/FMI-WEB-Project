@@ -24,41 +24,62 @@ $user = "
         Noida, UP, India
     </address>
 </user>";
-$xml = new SimpleXMLElement($user);
-function xml_to_emmet($xml, $level) {
-    $emmet = '';
-    $root = $xml->getName();
-    $emmet .= $root;
-    $inner_element_level = 1;
 
-    //WORKS
-    if($xml->attributes()) {
-        foreach($xml->attributes() as $attr => $val) {
-            $emmet .= '.'.$attr.'{'.$val.'}';
+//$user = "<library>
+//  <book>
+//    <title>Harry Potter and the Philosopher's Stone</title>
+//    <author>J.K. Rowling</author>
+//    <year>1997</year>
+//  </book>
+//  <book>
+//    <title>The Great Gatsby</title>
+//    <author>F. Scott Fitzgerald</author>
+//    <year>1925</year>
+//  </book>
+//  <book>
+//    <title>To Kill a Mockingbird</title>
+//    <author>Harper Lee</author>
+//    <year>1960</year>
+//  </book>
+//</library>";
+
+$xml = new SimpleXMLElement($user);
+
+function xml_to_emmet($xml) {
+    $emmet = '';
+
+    $root_tag = $xml->getName();
+    $value = trim((string)$xml);
+
+    $emmet .= $root_tag;
+
+    $attributes = $xml->attributes();
+
+    if ($attributes) {
+        foreach ($attributes as $attrName => $attrValue) {
+            $emmet .= '[' . $attrName . '=' . $attrValue . ']';
         }
+    }
+
+    if ($value !== '') {
+        $emmet .=  '{' . $value . '}';
     }
 
     $children = $xml->children();
-    if(count($children) > 0) {
-        if($level > 0) {
-            $emmet = '('.$emmet;
+
+    $groups = array();
+    if (count($children) > 0) {
+        $emmet = '(' . $emmet;
+        foreach ($children as $child) {
+            $groups[] = xml_to_emmet($child);
         }
-        $level = $level + 1;
-        $emmet .= '>';
-        foreach($children as $child) {
-            $emmet .= xml_to_emmet($child, $level);
-        }
-    }
-    else {
-        $emmet .= '{'.$xml.'}';
-        $emmet .= str_repeat(')', ($level - $inner_element_level)).'+';
-        return $emmet;
+
+        $emmet .=  '>' . implode('+', $groups) . ')';
     }
 
     return $emmet;
 }
 
-$emmet = xml_to_emmet($xml, 0);
-print_r($emmet);
-
-?>
+$emmet = xml_to_emmet($xml);
+$emmet_str = substr($emmet, 1, -1);
+print_r($emmet_str);
