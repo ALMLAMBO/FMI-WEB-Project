@@ -16,6 +16,8 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
     <body>
         <header>
             <h1><a href="index.php">Welcome to XML2Emmet!</a></h1>
+            <!--<div class="header_container">-->
+            
             <nav>
             <?php if ($loggedIn==true) { ?>
                 <button onclick="location.href='./history.php'" type="button" class="nav_button">История</button>
@@ -24,12 +26,12 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                 <button onclick="location.href='./login.php'" type="button"  class="nav_button">Вход</button>
             <?php } ?>
             </nav>
+            <?php if (isset($_GET['message'])) { ?>
+                <h3 class="message"><?php echo $_GET['message']; ?></h3>
+            <?php } ?>
+            <!--</div>-->
         </header>
-        <?php if (isset($_GET['message'])) { ?>
-
-<h3 class="message"><?php echo $_GET['message']; ?></h3>
-
-<?php } ?>
+        
         <div class="container">
             <form action="emmet2xml.php" method="POST" id="emmet_input">
                 <textarea class="input_box" placeholder="Enter Emmet"></textarea>
