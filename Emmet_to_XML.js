@@ -41,7 +41,22 @@ function EmmetToXML(input)
                 currentLevel--;
                 output += "\n" + "\t".repeat(currentLevel) + "</" + tags[currentLevel - 1] + ">";
             }
+        }
+        else if (char == "{")
+        {
 
+        }
+        else if (char == "}")
+        {
+
+        }
+        else if (char == "(")
+        {
+
+        }
+        else if (char == ")")
+        {
+            
         }
         else 
         {
