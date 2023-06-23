@@ -1,27 +1,19 @@
 <?php
-
+include ("DB_credentials.php");
 class Config {
     private const DB_SERVER = "localhost";
     private const DB_NAME = "xml_to_emmet";
-<<<<<<< HEAD
-    private const DB_USERNAME = "tegu";
-    private const DB_PASSWORD = "1234";
-=======
-    private const DB_USERNAME = "root";
-    private const DB_PASSWORD = "}ferrari{";
->>>>>>> Sasho
 
     public static function create_mysql_connection() {
-        $connection = new mysqli(Config::DB_SERVER, Config::DB_USERNAME, Config::DB_PASSWORD) or die("Database connection failed..");
+        $connection = new mysqli(Config::DB_SERVER, DB_credentials::DB_USERNAME, DB_credentials::DB_PASSWORD) or die("Database connection failed..");
         $connection -> query("create database if not exists ".Config::DB_NAME);
         $connection -> select_db(Config::DB_NAME);
 
         return $connection;
     }
-<<<<<<< HEAD
 
     public static function mysql_conection(){
-        $connection = mysqli_connect(Config::DB_SERVER, Config::DB_USERNAME, Config::DB_PASSWORD, Config::DB_NAME);
+        $connection = mysqli_connect(Config::DB_SERVER, DB_credentials::DB_USERNAME, DB_credentials::DB_PASSWORD, Config::DB_NAME);
         if (!$connection) {
 
             echo "Connection failed!";
@@ -29,8 +21,6 @@ class Config {
         }
         return $connection;
     }
-=======
->>>>>>> Sasho
 }
 
 $connection = Config::create_mysql_connection();
@@ -64,9 +54,4 @@ $users_conversions_table = "create table if not exists users_conversions (
     foreign key(conversion_id) references conversions(id)
 )";
 
-<<<<<<< HEAD
 $connection -> query($users_conversions_table);
-?>
-=======
-$connection -> query($users_conversions_table);
->>>>>>> Sasho
