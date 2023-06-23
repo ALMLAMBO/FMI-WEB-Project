@@ -29,6 +29,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
         <div class="container">
             <form action="xml2emmet.php" method="POST" id="xml_input">
                 <textarea class="input_box" placeholder="Enter XML"></textarea>
+                <input class="emmet_output" type="hidden" name="emmet_output" id='emmet2' value=""/>
             </form>
             <button onclick="location.href='./index.php'" type="button" class="change_button">⇌</button> 
             <code id="emmet_output" class="output_box">Emmet output</code>

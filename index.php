@@ -11,6 +11,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
     <head>
         <title>XML2Emmet - Web Technology Final Project</title>
         <link rel="stylesheet" href="style.css"/>
+        <script type="text/javascript" src="./src/emmet2xml.js">></script>
         <meta charset="UTF-8">
     </head>
     <body>
@@ -33,12 +34,30 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
         </header>
         
         <div class="container">
-            <form action="emmet2xml.php" method="POST" id="emmet_input">
-                <textarea class="input_box" placeholder="Enter Emmet"></textarea>
+            <form action="./src/emmet2xml.php" method="POST" id="emmet_input">
+                <textarea class="input_box" placeholder="Enter Emmet" name="input_box"></textarea>
+                <input class="xml_output" type="hidden" name="xml_output" id='xml2' value=""/>
             </form>
             <button onclick="location.href='./index2.php'" type="button" class="change_button">⇌</button> 
-            <code id="xml_output" class="output_box">XML output</code>
+            <pre id="xml_output" class="output_box">XML output</pre>
         </div>
         <input form="emmet_input" class="sub_button" type="submit" value="Convert" /> 
+
+        <script>
+               
+            const form=document.getElementById('emmet_input');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                var emmet_input=document.querySelector('.input_box').value;
+                console.log(emmet_input.val);
+                var xml_output=EmmetToXML(emmet_input);
+                console.log(xml_output);
+                document.getElementById("xml_output").textContent =xml_output;
+                var text=document.getElementById("xml2")
+                text.value+=xml_output;
+                form.submit();
+            });
+            
+        </script>
     </body>
 </html>
