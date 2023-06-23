@@ -26,14 +26,26 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
             <?php } ?>
             </nav>
         </header>
+        <?php if (isset($_GET['error'])) { ?>
+
+            <p class="error"><?php echo $_GET['error']; ?></p>
+
+        <?php } ?>
         <div class="container">
             <form action="xml2emmet.php" method="POST" id="xml_input">
-                <textarea class="input_box" placeholder="Enter XML"></textarea>
-                <input class="emmet_output" type="hidden" name="emmet_output" id='emmet2' value=""/>
+            <?php if (isset($_SESSION['last_xml'])) {?>
+                   <textarea class="input_box" placeholder="Enter XML" name="input_box"><?php print_r( $_SESSION['last_xml']);?></textarea>  
+           <?php }else{?>
+            <textarea class="input_box" placeholder="Enter XML" name="input_box"></textarea> 
+        <?php } ?>                 <input class="emmet_output" type="hidden" name="emmet_output" id='emmet2' value=""/>
             </form>
             <button onclick="location.href='./index.php'" type="button" class="change_button">⇌</button> 
-            <code id="emmet_output" class="output_box">Emmet output</code>
-        </div>
+            <pre id="emmet_output" class="output_box"><?php if (isset($_SESSION['last_emmet'])) {
+                print_r($_SESSION['last_emmet']);
+            }else{
+                echo "Emmet output";
+            }
+            ?></pre>        </div>
         <input form="xml_input" class="sub_button" type="submit" value="Convert" /> 
        
     </body>

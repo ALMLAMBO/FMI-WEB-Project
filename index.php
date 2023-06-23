@@ -32,14 +32,29 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
             <?php } ?>
             <!--</div>-->
         </header>
-        
+        <?php if (isset($_GET['error'])) { ?>
+
+            <p class="error"><?php echo $_GET['error']; ?></p>
+
+        <?php } ?>
         <div class="container">
             <form action="./src/emmet2xml.php" method="POST" id="emmet_input">
-                <textarea class="input_box" placeholder="Enter Emmet" name="input_box"></textarea>
-                <input class="xml_output" type="hidden" name="xml_output" id='xml2' value=""/>
+         
+            <?php if (isset($_SESSION['last_emmet'])) {?>
+                   <textarea class="input_box" placeholder="Enter Emmet" name="input_box"><?php print_r( $_SESSION['last_emmet']);?></textarea>  
+           <?php }else{?>
+            <textarea class="input_box" placeholder="Enter Emmet" name="input_box"></textarea> 
+        <?php } ?> 
+           
+            <input class="xml_output" type="hidden" name="xml_output" id='xml2' value=""/>
             </form>
             <button onclick="location.href='./index2.php'" type="button" class="change_button">⇌</button> 
-            <pre id="xml_output" class="output_box">XML output</pre>
+            <pre id="xml_output" class="output_box"><?php if (isset($_SESSION['last_xml'])) {
+                print_r($_SESSION['last_xml']);
+            }else{
+                echo "XML output";
+            }
+            ?></pre>
         </div>
         <input form="emmet_input" class="sub_button" type="submit" value="Convert" /> 
 
@@ -55,7 +70,9 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                 document.getElementById("xml_output").textContent =xml_output;
                 var text=document.getElementById("xml2")
                 text.value+=xml_output;
+                <?php if($loggedIn){?>
                 form.submit();
+                <?php }?>
             });
             
         </script>
