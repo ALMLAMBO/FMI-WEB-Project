@@ -1,49 +1,12 @@
 <?php
-$user = "
-<user>
-    <username>
-        Geeks123
-    </username>
-    <a>
-        <b>
-            2
-        </b>
-        <c>
-            <d>
-                4
-            </d>
-        </c>
-    </a>
-    <name>
-        GeeksforGeeks
-    </name>
-    <phone>
-        +91-XXXXXXXXXX
-    </phone>
-    <address font-color=\"blue\" font=\"awesome-fonts\" font-size=\"24px\">
-        Noida, UP, India
-    </address>
-</user>";
+session_start();
+include ("../config/Config.php");
+include ("../src/saveConversion.php");
+$xml_string = $_POST['input_box'];
+echo $xml_string;
+$output = $_POST['emmet_output'];
 
-//$user = "<library>
-//  <book>
-//    <title>Harry Potter and the Philosopher's Stone</title>
-//    <author>J.K. Rowling</author>
-//    <year>1997</year>
-//  </book>
-//  <book>
-//    <title>The Great Gatsby</title>
-//    <author>F. Scott Fitzgerald</author>
-//    <year>1925</year>
-//  </book>
-//  <book>
-//    <title>To Kill a Mockingbird</title>
-//    <author>Harper Lee</author>
-//    <year>1960</year>
-//  </book>
-//</library>";
-
-$xml = new SimpleXMLElement($user);
+$xml = new SimpleXMLElement($xml_string);
 
 function xml_to_emmet($xml) {
     $emmet = '';
@@ -82,4 +45,6 @@ function xml_to_emmet($xml) {
 
 $emmet = xml_to_emmet($xml);
 $emmet_str = substr($emmet, 1, -1);
-print_r($emmet_str);
+$_SESSION['last_emmet'] = $emmet_str;
+$_SESSION['last_xml'] = htmlspecialchars($xml_string);
+saveConversion("2","xml", "emmet", $xml_string, $emmet_str, $_SESSION['id']);
