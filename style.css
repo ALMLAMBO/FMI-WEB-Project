@@ -1,0 +1,171 @@
+body{
+    background-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-start;
+    gap:10vh;
+}
+header{
+    height: 20vh;
+    width: 100%;
+    margin: 0%;
+    background-color: darkslategrey;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+h1{
+    text-align: center;
+}
+h1>a{
+    color: azure;
+    text-decoration: none;
+    padding: 3vh;
+}
+
+nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-self: center;
+}
+
+.input_box, .output_box{
+    width: 80vh;
+    height: 70vh;
+    border: 2px solid darkcyan;
+    border-radius: 1vh;
+    padding: 2vh;
+}
+
+.input_box{
+    background-color: black;
+    color: lightslategray;
+}
+.output_box{
+    background-color: lightslategray;
+    color: black;
+}
+
+.sub_button{
+    width: 30vh;
+    font-size: larger;
+    margin-bottom: 5vh;
+    align-self: center;
+    background-color: slategrey;
+    color: black;
+}
+
+.change_button{
+    font-size: xx-large;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    border: 2px solid darkslategrey;
+    background-color: darkslategrey;
+    color: azure;
+    border-radius: 50%;
+}
+
+.nav_button{
+    padding: 2vh;
+    font-size: larger;
+    text-align: center;
+    border: 2px solid darkslategrey;
+    background-color: darkslategrey;
+    color: azure;
+    border-radius: 2vh;
+}
+
+.sub_button:hover, .open_button:hover{
+    background-color: darkslategrey;
+    color: azure;
+}
+
+.change_button:hover, .nav_button:hover{
+    background-color: slategray;
+    color: black;
+    border: 2px solid slategray;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.user-data{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    border: 2px solid darkslategrey;
+    padding: 5vh;
+    background-color: rgb(97, 148, 148);
+    border-radius: 1vh;
+}
+
+.user-data>form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.user-data-field{
+    border: 2px solid darkslategrey;
+    font-size: xx-large;
+    background-color: lightslategray;
+    color: black;
+}
+.error {
+
+    background: #c37171;
+    color: #0c0101;
+    padding: 2vh;
+    width: 95%;
+    border-radius: 1vh;
+    margin: 3vh auto;
+ }
+
+h3.message{
+    font-size: larger;
+    color: azure;
+    padding: 2vh;
+    width: 95%;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th{
+    text-align: left;
+}
+
+th, td {
+    border-bottom: 1px solid darkslategrey;
+    vertical-align: middle;
+}
+tr:hover {
+    background-color: darkcyan;
+}
+
+th.for_button{
+    width: 20vh;
+    text-align: right;
+}
+
+.open_button{
+    width: 20vh;
+    font-size: larger;
+    background-color: slategrey;
+    color: black;
+}
