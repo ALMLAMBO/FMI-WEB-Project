@@ -32,11 +32,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
 
         <?php } ?>
         <div class="container">
-            <form action="xml2emmet.php" method="POST" id="xml_input">
+            <form action="http://localhost/FMI-WEB-Project/xml_to_emmet/xml_to_emmet.php" method="POST" id="xml_input">
             <?php if (isset($_SESSION['last_xml'])) {?>
                    <textarea class="input_box" placeholder="Enter XML" name="input_box"><?php print_r( $_SESSION['last_xml']);?></textarea>  
            <?php }else{?>
-            <textarea class="input_box" placeholder="Enter XML" name="input_box"></textarea> 
+            <textarea class="input_box" placeholder="Enter XML" name="input_box"></textarea>
         <?php } ?>                 <input class="emmet_output" type="hidden" name="emmet_output" id='emmet2' value=""/>
             </form>
             <button onclick="location.href='./index.php'" type="button" class="change_button">⇌</button> 
@@ -45,8 +45,20 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
             }else{
                 echo "Emmet output";
             }
-            ?></pre>        </div>
-        <input form="xml_input" class="sub_button" type="submit" value="Convert" /> 
-       
+            ?></pre>
+        </div>
+        <input form="xml_input" class="sub_button" type="submit" value="Convert" />
+
+        <script>
+            const form=document.getElementById('xml_input');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                document.getElementById("emmet_output").textContent = sessionStorage.getItem("last_emmet");
+                <?php if($loggedIn){?>
+                form.submit();
+                <?php }?>
+            });
+
+        </script>
     </body>
 </html>

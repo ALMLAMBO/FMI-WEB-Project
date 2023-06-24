@@ -140,3 +140,7 @@ h3.message{
     padding: 2vh;
     width: 95%;
 }
+
+table, th, td {
+    border: 1px solid;
+}

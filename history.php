@@ -6,6 +6,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
 } else {
     $loggedIn = false;
 }
+include ("./config/Config.php");
+$conn =  Config::mysql_conection(); 
+$id = $_SESSION['id'];
+$query = "SELECT * FROM users_conversions Join conversions on conversion_id=conversions.id where user_id='$id'";
+$res = mysqli_query($conn,$query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,11 +37,20 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                     <th>Date</th>
                     <th>From</th>
                     <th>To</th>
+                    <th>Input</th>
                     <th>Result</th>
                 </tr>
             </thead>
             <tbody>
-                <!--PHP Get or JS with PHP-->
+            <?php while( $row=  mysqli_fetch_array($res)){?>
+                    <tr>
+                        <td><?php echo $row['converted_at']; ?></td>
+                        <td><?php echo $row['from_what']; ?></td>
+                        <td><?php echo $row['to_what']; ?></td>
+                        <td><?php echo htmlspecialchars($row['content_to_convert']) ;?></td>
+                        <td><?php echo htmlspecialchars($row['result_from_conversion'] );?></td>
+                    </tr>
+            <?php }?>
             </tbody>
         </table>
 </html>
