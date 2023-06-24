@@ -70,9 +70,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                 document.getElementById("xml_output").textContent =xml_output;
                 var text=document.getElementById("xml2")
                 text.value+=xml_output;
-                <?php if($loggedIn){?>
                 form.submit();
-                <?php }?>
             });
             
         </script>
