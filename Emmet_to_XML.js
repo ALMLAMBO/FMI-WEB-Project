@@ -84,7 +84,6 @@ function EmmetToXML(input)
                 i++;
                 char = input[i];
             }
-            console.log(textValue);
         }
         else if (char == "(")
         {
@@ -114,7 +113,6 @@ function EmmetToXML(input)
         }
         else if (char == "[")
         {
-            console.log("starting");
             let hasValue = false;
             let inString = false;
 
@@ -151,10 +149,14 @@ function EmmetToXML(input)
     }
 
     tags[currentGroup][currentLevel - 1] = currentTag;
-    output += "\n" + "\t".repeat(currentLevel) + "<" + currentTag + attributes + ">" + textValue;
+    if (currentTag != "") output += "\n" + "\t".repeat(currentLevel) + "<" + currentTag + attributes + ">" + textValue;
 
+    if(input[input.length - 1] == ")")
+    {
+        output += "\n\t";
+    }
     for (let i = 0; currentLevel > i; currentLevel--) {
-        output += "</" + tags[currentGroup][currentLevel - 1] + ">\n" + "\t".repeat(currentLevel - 1);
+        if(tags[currentGroup][currentLevel - 1] != "") output += "</" + tags[currentGroup][currentLevel - 1] + ">\n" + "\t".repeat(currentLevel - 1);
     }
 
     console.log(output);
