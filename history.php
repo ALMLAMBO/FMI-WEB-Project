@@ -6,10 +6,11 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
 } else {
     $loggedIn = false;
 }
+
 include ("./config/Config.php");
 $conn =  Config::mysql_conection(); 
 $id = $_SESSION['id'];
-$query = "SELECT * FROM users_conversions Join conversions on conversion_id=conversions.id where user_id='$id'";
+$query = "SELECT * FROM users_conversions Join conversions on conversion_id=conversions.id where user_id='$id' ORDER BY users_conversions.converted_at DESC";
 $res = mysqli_query($conn,$query);
 ?>
 <!DOCTYPE html>
@@ -39,6 +40,7 @@ $res = mysqli_query($conn,$query);
                     <th>To</th>
                     <th>Input</th>
                     <th>Result</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -49,8 +51,13 @@ $res = mysqli_query($conn,$query);
                         <td><?php echo $row['to_what']; ?></td>
                         <td><?php echo htmlspecialchars($row['content_to_convert']) ;?></td>
                         <td><?php echo htmlspecialchars($row['result_from_conversion'] );?></td>
+                        <td class="for_button">
+                            <form action="./src/openHistory.php" method="POST">
+                                <input type="hidden" name="conv_id" value="<?php echo $row['conversion_id'] ?>"/>
+                                <input class="open_button" name="sub" type="submit" value="Отвори"/>
+                            </form>
+                        </td>
                     </tr>
             <?php }?>
             </tbody>
-        </table>
 </html>

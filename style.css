@@ -80,7 +80,7 @@ nav{
     border-radius: 2vh;
 }
 
-.sub_button:hover{
+.sub_button:hover, .open_button:hover{
     background-color: darkslategrey;
     color: azure;
 }
@@ -141,6 +141,31 @@ h3.message{
     width: 95%;
 }
 
-table, th, td {
-    border: 1px solid;
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th{
+    text-align: left;
+}
+
+th, td {
+    border-bottom: 1px solid darkslategrey;
+    vertical-align: middle;
+}
+tr:hover {
+    background-color: darkcyan;
+}
+
+th.for_button{
+    width: 20vh;
+    text-align: right;
+}
+
+.open_button{
+    width: 20vh;
+    font-size: larger;
+    background-color: slategrey;
+    color: black;
 }
