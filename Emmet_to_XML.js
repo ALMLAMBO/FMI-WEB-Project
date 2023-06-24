@@ -153,7 +153,7 @@ function EmmetToXML(input)
 
     if(input[input.length - 1] == ")")
     {
-        output += "\n\t";
+        output += "\n" + "\t".repeat(currentLevel-1);
     }
     for (let i = 0; currentLevel > i; currentLevel--) {
         if(tags[currentGroup][currentLevel - 1] != "") output += "</" + tags[currentGroup][currentLevel - 1] + ">\n" + "\t".repeat(currentLevel - 1);
