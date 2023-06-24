@@ -1,9 +1,9 @@
 <?php
 session_start();
-
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
     $loggedIn = true;
-} else {
+}
+else {
     $loggedIn = false;
 }
 ?>
@@ -54,9 +54,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
                 document.getElementById("emmet_output").textContent = sessionStorage.getItem("last_emmet");
-                <?php if($loggedIn){?>
                 form.submit();
-                <?php }?>
             });
 
         </script>
