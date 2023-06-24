@@ -11,7 +11,7 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
     <head>
         <title>XML2Emmet - Web Technology Final Project</title>
         <link rel="stylesheet" href="style.css"/>
-        <script type="text/javascript" src="./src/emmet2xml.js">></script>
+        <script type="text/javascript" src="Emmet_to_XML.js">></script>
         <meta charset="UTF-8">
     </head>
     <body>
