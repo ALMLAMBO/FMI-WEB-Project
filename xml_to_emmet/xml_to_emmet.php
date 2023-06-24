@@ -2,8 +2,12 @@
 session_start();
 include ("../config/Config.php");
 include ("../src/saveConversion.php");
+if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
+    $loggedIn = true;
+} else {
+    $loggedIn = false;
+}
 $xml_string = $_POST['input_box'];
-echo $xml_string;
 $output = $_POST['emmet_output'];
 
 $xml = new SimpleXMLElement($xml_string);
@@ -47,4 +51,9 @@ $emmet = xml_to_emmet($xml);
 $emmet_str = substr($emmet, 1, -1);
 $_SESSION['last_emmet'] = $emmet_str;
 $_SESSION['last_xml'] = htmlspecialchars($xml_string);
-saveConversion("2","xml", "emmet", $xml_string, $emmet_str, $_SESSION['id']);
+if($loggedIn === true) {
+    saveConversion("2", "xml", "emmet", $xml_string, $emmet_str, $_SESSION['id']);
+}
+else {
+    header("location:../index2.php");
+}

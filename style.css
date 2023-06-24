@@ -39,6 +39,7 @@ nav{
     border: 2px solid darkcyan;
     border-radius: 1vh;
     padding: 2vh;
+    word-wrap: break-word;
 }
 
 .input_box{
@@ -48,6 +49,7 @@ nav{
 .output_box{
     background-color: lightslategray;
     color: black;
+    white-space: pre-wrap;
 }
 
 .sub_button{
