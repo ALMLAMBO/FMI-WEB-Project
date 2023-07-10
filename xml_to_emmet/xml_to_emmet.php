@@ -23,14 +23,11 @@ function xml_to_emmet($xml) {
     $attributes = $xml->attributes();
 
     if ($attributes) {
-        if(isset($_POST['attributes'])) {
+        if(isset($_POST['attributes']) || isset($_POST['attributes_val'])) {
             foreach ($attributes as $attrName => $attrValue) {
-                $emmet .= '[' . $attrName;
+                $emmet .= '.' . $attrName;
                 if(isset($_POST['attributes_val'])) {
-                    $emmet .= '=' . $attrValue . ']';
-                }
-                else {
-                    $emmet .= ']';
+                    $emmet .= '{' . $attrValue . '}';
                 }
             }
         }
