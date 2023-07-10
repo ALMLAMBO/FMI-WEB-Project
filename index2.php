@@ -32,7 +32,15 @@ else {
 
         <?php } ?>
         <div class="container">
-            <form action="http://localhost/FMI-WEB-Project/xml_to_emmet/xml_to_emmet.php" method="POST" id="xml_input">
+            <form action="./xml_to_emmet/xml_to_emmet.php" method="POST" id="xml_input">
+                <div>
+                    <input type="checkbox" id="text" name="text">
+                    <label for="text">Get Value Of Elements</label>
+                    <input type="checkbox" id="attributes" name="attributes">
+                    <label for="attributes">Get Attributes</label>
+                    <input type="checkbox" id="attributes_val" name="attributes_val">
+                    <label for="attributes_val">Get Attributes Value</label>
+                </div>
             <?php if (isset($_SESSION['last_xml'])) {?>
                    <textarea class="input_box" placeholder="Enter XML" name="input_box"><?php print_r( $_SESSION['last_xml']);?></textarea>  
            <?php }else{?>
