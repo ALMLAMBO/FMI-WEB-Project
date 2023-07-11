@@ -37,9 +37,17 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
             <p class="error"><?php echo $_GET['error']; ?></p>
 
         <?php } ?>
+
         <div class="container">
             <form action="./src/emmet2xml.php" method="POST" id="emmet_input">
-         
+                <div>
+                    <input type="checkbox" id="text" name="text">
+                    <label for="text">Get Value Of Elements</label>
+                    <input type="checkbox" id="attributes" name="attributes">
+                    <label for="attributes">Get Attributes</label>
+                    <input type="checkbox" id="attributes_val" name="attributes_val">
+                    <label for="attributes_val">Get Attributes Value</label>
+                </div>
             <?php if (isset($_SESSION['last_emmet'])) {?>
                    <textarea class="input_box" placeholder="Enter Emmet" name="input_box"><?php print_r( $_SESSION['last_emmet']);?></textarea>  
            <?php }else{?>
@@ -65,7 +73,13 @@ if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true) {
                 event.preventDefault();
                 var emmet_input=document.querySelector('.input_box').value;
                 console.log(emmet_input.val);
-                var xml_output=EmmetToXML(emmet_input);
+
+                const bool_1 = document.querySelector("#text");
+                const bool_2 = document.querySelector("#attributes");
+                const bool_3 = document.querySelector("#attributes_val");
+
+                var xml_output=EmmetToXML(emmet_input, bool_1.checked, bool_2.checked, bool_3.checked);
+                
                 console.log(xml_output);
                 document.getElementById("xml_output").textContent =xml_output;
                 var text=document.getElementById("xml2")
