@@ -1,4 +1,4 @@
-function EmmetToXML(input) 
+function EmmetToXML(input, getElementValue, getAtr, getAtrValue) 
 {
     let output = "";
 
@@ -75,15 +75,29 @@ function EmmetToXML(input)
         }
         else if (char == "{")
         {
-            i++;
-            char = input[i];
-            while (char != "}")
+            if(!getElementValue)
             {
-                textValue += char;
-
                 i++;
                 char = input[i];
+                while (char != "}")
+                {
+                    i++;
+                    char = input[i];
+                }
             }
+            else
+            {
+                i++;
+                char = input[i];
+                while (char != "}")
+                {
+                    textValue += char;
+
+                    i++;
+                    char = input[i];
+                }                
+            }
+
         }
         else if (char == "(")
         {
@@ -113,34 +127,62 @@ function EmmetToXML(input)
         }
         else if (char == "[")
         {
-            let hasValue = false;
-            let inString = false;
-
-            i++;
-            char = input[i];
-            while (char != "]")
+            if(!getAtr)
             {
-                if (char == "\"" && !inString) inString = true;
-                else if (char=="\"" && inString) inString = false;
-                if (char == "=")
-                {
-                    hasValue = true;
-                    attributes += char;
-                }
-                else if (hasValue && char == " " && !inString)
-                {
-                    hasValue = false;
-                    attributes += " ";
-                }
-                else if (!hasValue && char == " " && !inString) attributes += '="" ';
-                else if (!hasValue && input[i + 1] == "]") 
-                    attributes += char + '=""';
-                else attributes += char;
-
                 i++;
                 char = input[i];
+                while (char != "]")
+                {
+                    i++;
+                    char = input[i];
+                }
             }
-            attributes = " " + attributes;
+            else 
+            {
+                let hasValue = false;
+                let inString = false;
+    
+                i++;
+                char = input[i];
+                while (char != "]")
+                {
+                    if (char == "\"" && !inString) inString = true;
+                    else if (char=="\"" && inString) inString = false;
+                    if (char == "=")
+                    {
+                        if(!getAtrValue)
+                        {
+                            let cnt = 0;
+                            while(cnt != 2)
+                            {
+                                i++;
+                                char = input[i];
+                                if(char == "\"") cnt++;
+                            }
+                        }
+                        else
+                        {
+                            hasValue = true;
+                            attributes += char;                        
+                        }
+
+                    }
+                    else if (hasValue && char == " " && !inString)
+                    {
+                        hasValue = false;
+                        attributes += " ";
+                    }
+                    else if (!hasValue && char == " " && !inString && getAtrValue) attributes += '="" ';
+                    else if (!hasValue && input[i + 1] == "]" && getAtrValue) 
+                        attributes += char + '=""';
+                    else attributes += char;
+    
+                    i++;
+                    char = input[i];
+                }
+                attributes = " " + attributes;
+            }
+
         }
         else 
         {
@@ -163,3 +205,4 @@ function EmmetToXML(input)
 
     return output;
 }
+    
